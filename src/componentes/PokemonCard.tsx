@@ -1,17 +1,17 @@
-interface Details {
-  name: string;
-  id: number;
-  types: PokemonType[];
-  height: number;
-  weight: number;
-  sprite: string;
-}
+import Tag from "./Tags.tsx";
 
 interface Card {
-  detalles: Details;
+  details: {
+    name: string;
+    id: number;
+    types: PokemonType[];
+    height: number;
+    weight: number;
+    sprite: string;
+  };
 }
 
-type PokemonType =
+export type PokemonType =
   | "fire"
   | "water"
   | "grass"
@@ -30,8 +30,8 @@ type PokemonType =
   | "normal"
   | "steel";
 
-const PokemonCard: React.FC<Card> = ({ detalles }) => {
-  const { name, id, types, height, weight, sprite } = detalles;
+const PokemonCard: React.FC<Card> = ({ details }) => {
+  const { name, id, types, height, weight, sprite } = details;
   const typeClass = types[0];
 
   let ceros = null;
@@ -60,10 +60,9 @@ const PokemonCard: React.FC<Card> = ({ detalles }) => {
         <div className="details">
           <br></br>
           {types.map((tipo) => (
-            <span className={`type ${tipo}`} key={tipo}>
-              {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
-            </span>
+            <Tag tipo={tipo}></Tag>
           ))}
+
           <br></br>
 
           <p className={`poppins-bold ${typeClass}`} color={typeClass}>
