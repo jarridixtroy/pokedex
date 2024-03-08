@@ -26,7 +26,9 @@ type PokemonType =
   | "bug"
   | "ground"
   | "ice"
-  | "rock";
+  | "rock"
+  | "normal"
+  | "steel";
 
 const PokemonCard: React.FC<Card> = ({ detalles }) => {
   const { name, id, types, height, weight, sprite } = detalles;
