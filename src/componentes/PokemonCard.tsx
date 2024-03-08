@@ -1,5 +1,3 @@
-import "";
-
 interface Details {
   name: string;
   id: number;
