@@ -1,0 +1,18 @@
+export type PokemonType =
+  | "fire"
+  | "water"
+  | "grass"
+  | "flying"
+  | "electric"
+  | "fighting"
+  | "psychic"
+  | "dark"
+  | "ghost"
+  | "dragon"
+  | "fairy"
+  | "bug"
+  | "ground"
+  | "ice"
+  | "rock"
+  | "normal"
+  | "steel";
