@@ -1,37 +1,8 @@
+import { Pokemon } from "../models/pokemon.model.ts";
 import Tag from "./Tags.tsx";
 
-interface Card {
-  details: {
-    name: string;
-    id: number;
-    types: PokemonType[];
-    height: number;
-    weight: number;
-    sprite: string;
-  };
-}
-
-export type PokemonType =
-  | "fire"
-  | "water"
-  | "grass"
-  | "flying"
-  | "electric"
-  | "fighting"
-  | "psychic"
-  | "dark"
-  | "ghost"
-  | "dragon"
-  | "fairy"
-  | "bug"
-  | "ground"
-  | "ice"
-  | "rock"
-  | "normal"
-  | "steel";
-
-const PokemonCard: React.FC<Card> = ({ details }) => {
-  const { name, id, types, height, weight, sprite } = details;
+const Card: React.FC<Pokemon> = (pokemon: Pokemon) => {
+  const { name, id, types, height, weight, sprite } = pokemon;
   const typeClass = types[0];
 
   let ceros = null;
@@ -99,4 +70,4 @@ const PokemonCard: React.FC<Card> = ({ details }) => {
   );
 };
 
-export default PokemonCard;
+export default Card;
