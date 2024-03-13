@@ -1,7 +1,12 @@
-import { Pokemon } from "../models/pokemon.model.ts";
+import { Pokemon } from "../domain/models/pokemon.model.ts";
 import Tag from "./Tags.tsx";
 
-const Card: React.FC<Pokemon> = (pokemon: Pokemon) => {
+interface Props {
+  pokemon: Pokemon;
+  className: string;
+}
+
+const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const { name, id, types, height, weight, sprite } = pokemon;
   const typeClass = types[0];
 
@@ -70,4 +75,4 @@ const Card: React.FC<Pokemon> = (pokemon: Pokemon) => {
   );
 };
 
-export default Card;
+export default PokemonCard;
