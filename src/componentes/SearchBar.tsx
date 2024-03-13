@@ -1,6 +1,6 @@
 // SearchBar.js
 import React, { ChangeEvent, useState } from "react";
-import "./searchBar.css";
+import "./SearchBar.css";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
