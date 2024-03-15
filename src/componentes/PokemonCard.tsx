@@ -35,8 +35,8 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
         <br></br>
         <div className="details">
           <br></br>
-          {types.map((tipo) => (
-            <Tag tipo={tipo}></Tag>
+          {types.map((tipo, index) => (
+            <Tag key={index} tipo={tipo}></Tag>
           ))}
 
           <br></br>

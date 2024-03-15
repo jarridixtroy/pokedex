@@ -5,7 +5,10 @@ import SearchBar from "./SearchBar";
 import { Pokemon } from "../domain/models/pokemon.model";
 import { transform } from "../domain/services/transformData";
 
-const PokemonList = () => {
+interface PropsList {
+  className: string;
+}
+const PokemonList: React.FC<PropsList> = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [filteredPokemonList, setFilteredPokemonList] = useState<Pokemon[]>([]);
 
@@ -42,7 +45,6 @@ const PokemonList = () => {
     <div>
       <hr />
       <SearchBar onSearch={handleSearch} />
-
       <div className="pokemon-list-container">
         {filteredPokemonList.map((pokemon, index) => (
           <PokemonCard className="pokemon-card" key={index} pokemon={pokemon} />
