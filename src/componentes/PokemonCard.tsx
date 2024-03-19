@@ -3,7 +3,6 @@ import Tag from "./Tags.tsx";
 
 interface Props {
   pokemon: Pokemon;
-  className: string;
 }
 
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {

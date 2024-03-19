@@ -47,7 +47,7 @@ const PokemonList: React.FC<PropsList> = () => {
       <SearchBar onSearch={handleSearch} />
       <div className="pokemon-list-container">
         {filteredPokemonList.map((pokemon, index) => (
-          <PokemonCard className="pokemon-card" key={index} pokemon={pokemon} />
+          <PokemonCard key={index} pokemon={pokemon} />
         ))}
       </div>
     </div>
