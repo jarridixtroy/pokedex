@@ -4,11 +4,9 @@ import PokemonCard from "./PokemonCard";
 import SearchBar from "./SearchBar";
 import { Pokemon } from "../domain/models/pokemon.model";
 import { transform } from "../domain/services/transformData";
+import { act } from "react-dom/test-utils";
 
-interface PropsList {
-  className: string;
-}
-const PokemonList: React.FC<PropsList> = () => {
+const PokemonList: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [filteredPokemonList, setFilteredPokemonList] = useState<Pokemon[]>([]);
 
@@ -25,20 +23,23 @@ const PokemonList: React.FC<PropsList> = () => {
       let listapokemon = details.map((item) => transform(item));
 
       setPokemonList(listapokemon);
-      setFilteredPokemonList(listapokemon);
+      act(() => {
+        setFilteredPokemonList(listapokemon);
+      });
     };
 
     fetchData();
   }, []);
 
   const handleSearch = (term: string) => {
-    let filteredList;
+    let filteredList: Pokemon[];
 
     filteredList = pokemonList.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(term.toLowerCase())
     );
-
-    setFilteredPokemonList(filteredList);
+    act(() => {
+      setFilteredPokemonList(filteredList);
+    });
   };
 
   return (
