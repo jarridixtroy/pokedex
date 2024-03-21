@@ -1,15 +1,14 @@
 .pokemon-list-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Distribuye el espacio uniformemente */
-  margin: 0 auto; /* Centra la lista horizontalmente */
+  justify-content: space-between; /* Distribuye el espacio uniformemente */
+  margin: auto; /* Centra la lista horizontalmente */
   padding: 20px; /* Espacio alrededor de la lista */
-  /* /* Ajusta el margen superior según sea necesario */
 }
 
-@media (max-width: 991px) {
+@media (max-width: auto) {
   .pokemon-card {
-    flex-basis: calc(100%-300px); /* Dos tarjetas por fila con margen */
+    flex-basis: 400px; /* Dos tarjetas por fila con margen */
   }
 }
 

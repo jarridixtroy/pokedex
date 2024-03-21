@@ -1,0 +1,54 @@
+.about-grass {
+  color: #74cb48; /* Fondo verde para la cabecera */
+}
+.about-fire {
+  color: #ffa200; /* Fondo de la cabecera para tipo fuego */
+}
+.about-water {
+  color: #2196f3; /* Azul para tipo agua */
+}
+.about-poison {
+  color: #a43e9e; /* Color para el tipo veneno */
+}
+.about-bug {
+  color: #a7b723; /* Color para el tipo veneno */
+}
+.about-dragon {
+  color: #7037ff; /* Color para el tipo veneno */
+}
+.about-dark {
+  color: #75574c; /* Color para el tipo veneno */
+}
+.about-psychic {
+  color: #fff; /* Color para el tipo veneno */
+}
+.about-fighting {
+  color: #c12239; /* Color para el tipo veneno */
+}
+.about-electric {
+  color: #ffde0a; /* Color para el tipo veneno */
+}
+.about-flying {
+  color: #a891ec; /* Color para el tipo veneno */
+}
+.about-rock {
+  color: #b69e31; /* Color para el tipo veneno */
+}
+.about-ground {
+  color: #dec16b; /* Color para el tipo veneno */
+}
+.about-normal {
+  color: #aaa67f; /* Color para el tipo veneno */
+}
+.about-ghost {
+  color: #70559b; /* Color para el tipo veneno */
+}
+.about-ice {
+  color: #9ad6df; /* Color para el tipo veneno */
+}
+.about-steel {
+  color: #b7b9d0; /* Color para el tipo veneno */
+}
+.about-fairy {
+  color: #e69eac; /* Color para el tipo veneno */
+}
