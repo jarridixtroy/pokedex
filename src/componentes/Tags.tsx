@@ -1,10 +1,10 @@
 import { PokemonType } from "../domain/models/pokemonType.model";
-import "./Tags.css";
 
 interface TagsProps {
   tipo: PokemonType;
 }
 const Tags: React.FC<TagsProps> = ({ tipo }) => {
-  return <p className={`tag ${tipo}`}>{tipo}</p>;
+  const propperType = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+  return <span className={`tag ${tipo}`}>{propperType}</span>;
 };
 export default Tags;

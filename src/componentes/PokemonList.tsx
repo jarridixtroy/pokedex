@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchPokemonList, fetchPokemonDetails } from "../domain/services/api";
+import { getPokemonDetails } from "../domain/services/getPokemonDetails";
+import { getPokemonList } from "../domain/services/getPokemonList";
 import PokemonCard from "./PokemonCard";
 import SearchBar from "./SearchBar";
 import { Pokemon } from "../domain/models/pokemon.model";
@@ -12,9 +13,9 @@ const PokemonList: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchPokemonList();
+      const data = await getPokemonList();
       const detailsPromises = data.map((value: JSON, index: number) =>
-        fetchPokemonDetails(index + 1)
+        getPokemonDetails(index + 1)
       );
 
       // Esperar a que todas las llamadas asíncronas se completen
@@ -45,7 +46,7 @@ const PokemonList: React.FC = () => {
   return (
     <div>
       <hr />
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar className="search-bar" onSearch={handleSearch} />
       <div className="pokemon-list-container">
         {filteredPokemonList.map((pokemon, index) => (
           <PokemonCard key={index} pokemon={pokemon} />

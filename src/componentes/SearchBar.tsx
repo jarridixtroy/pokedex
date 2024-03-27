@@ -1,6 +1,6 @@
 // SearchBar.js
 import React, { ChangeEvent, useState } from "react";
-import "./SearchBar.css";
+import { act } from "react-dom/test-utils";
 
 interface SearchBarProps {
   onSearch: (term: string) => void;
@@ -11,7 +11,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const term = event.target.value;
-    setSearchTerm(term);
+    act(() => {
+      setSearchTerm(term);
+    });
+
     onSearch(term);
   };
 
