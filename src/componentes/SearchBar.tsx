@@ -1,7 +1,8 @@
-// SearchBar.js
+
 import React, { ChangeEvent, useState } from "react";
 import { act } from "react-dom/test-utils";
 import styled from "styled-components";
+import busquedaIcono from '../iconos/busquedaIcono.png'; 
 interface SearchBarProps {
   onSearch: (term: string) => void;
 }
@@ -21,7 +22,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   return (
     <Barra
       type="text"
-      placeholder="Buscar Pokémon por nombre"
       value={searchTerm}
       onChange={handleSearch}
       className="search-bar"
@@ -37,4 +37,9 @@ const Barra = styled.input`
   margin: 0 auto; /* Centra el elemento horizontalmente */
   display: block;
   border-radius: 10px;
+  background-image: url(${busquedaIcono});
+  background-size: 20px; 
+  background-position: left 10px center; 
+  background-repeat: no-repeat;
+  padding-right: 30px; 
 `;

@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./componentes/styles/PokemonCard.css";
 import "./componentes/styles/PokemonList.css";
-import "./componentes/styles/SearchBar.css";
+
 import "./componentes/styles/Tags.css";
 import "./componentes/styles/about-colors.css";
 

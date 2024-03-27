@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Pokemon } from "../domain/models/pokemon.model.ts";
 import Tag from "./Tags.tsx";
+import pesoIcono from '../iconos/pesopokemon.png';
+import alturaIcono from '../iconos/altura.png';
 
 interface Props {
   pokemon: Pokemon;
@@ -40,7 +42,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           <PesoAltura>
             <SeccionPesoAltura>
               <img
-                src="./iconos/pesopokemon.png"
+                src={pesoIcono}
                 width="18px"
                 height="20px"
                 alt="peso"
@@ -52,12 +54,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           <section className="vl"></section>
           <PesoAltura>
             <SeccionPesoAltura>
-              <img
-                src="./iconos/altura.png"
-                width="8px"
-                height="16px"
-                alt={propperName}
-              />
+              <img src={alturaIcono} width="8px" height="16px" alt={propperName} />
               {height / 10} m{" "}
             </SeccionPesoAltura>
             <SeccionPesoAltura>Height</SeccionPesoAltura>
@@ -112,10 +109,8 @@ const About = styled.section`
 `;
 const Size = styled.div`
   display: flex;
-  justify-content: center;
-
+  justify-content: space-evenly;
   margin-bottom: 10px;
-  gap: 24px;
 `;
 const PesoAltura = styled.div`
   display: flex;
@@ -125,7 +120,7 @@ const SeccionPesoAltura = styled.span`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 3px;
+  gap: 6px;
 `;
 const Imagen = styled.img`
   width: 150px;
