@@ -1,7 +1,7 @@
 // SearchBar.js
 import React, { ChangeEvent, useState } from "react";
 import { act } from "react-dom/test-utils";
-
+import styled from "styled-components";
 interface SearchBarProps {
   onSearch: (term: string) => void;
 }
@@ -19,7 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <input
+    <Barra
       type="text"
       placeholder="Buscar Pokémon por nombre"
       value={searchTerm}
@@ -30,3 +30,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 };
 
 export default SearchBar;
+
+const Barra = styled.input`
+  width: 40%;
+  padding: 8px;
+  margin: 0 auto; /* Centra el elemento horizontalmente */
+  display: block;
+  border-radius: 10px;
+`;
