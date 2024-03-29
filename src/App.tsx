@@ -1,8 +1,6 @@
 import "./App.css";
 import PokemonList from "./componentes/PokemonList.tsx";
 
-import ExPokemon from "./componentes/ejemploPokemon.tsx";
-
 function App() {
   return (
     <div className="App">
