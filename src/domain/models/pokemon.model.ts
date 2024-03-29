@@ -7,4 +7,5 @@ export interface Pokemon {
   height: number;
   weight: number;
   sprite: string;
+  description: string;
 }
