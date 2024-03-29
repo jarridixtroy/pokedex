@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { Pokemon } from "../domain/models/pokemon.model.ts";
 import Tag from "./Tags.tsx";
-import pesoIcono from '../iconos/pesopokemon.png';
-import alturaIcono from '../iconos/altura.png';
+import pesoIcono from "../iconos/pesopokemon.png";
+import alturaIcono from "../iconos/altura.png";
 
 interface Props {
   pokemon: Pokemon;
 }
 
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {
-  const { name, id, types, height, weight, sprite } = pokemon;
+  const { name, id, types, height, weight, sprite, description } = pokemon;
   const typeClass = types[0];
 
   const get3DigitsName = () => {
@@ -41,12 +41,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
         <Size>
           <PesoAltura>
             <SeccionPesoAltura>
-              <img
-                src={pesoIcono}
-                width="18px"
-                height="20px"
-                alt="peso"
-              />
+              <img src={pesoIcono} width="18px" height="20px" alt="peso" />
               {weight / 10} Kg
             </SeccionPesoAltura>
             <SeccionPesoAltura>Weight</SeccionPesoAltura>
@@ -54,15 +49,17 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           <section className="vl"></section>
           <PesoAltura>
             <SeccionPesoAltura>
-              <img src={alturaIcono} width="8px" height="16px" alt={propperName} />
+              <img
+                src={alturaIcono}
+                width="8px"
+                height="16px"
+                alt={propperName}
+              />
               {height / 10} m{" "}
             </SeccionPesoAltura>
             <SeccionPesoAltura>Height</SeccionPesoAltura>
           </PesoAltura>
         </Size>
-        <span>
-          Pikachu es el mas fiera keloke. Esta en su prime yeah, yeah yeah
-        </span>
       </div>
     </div>
   );
@@ -99,8 +96,8 @@ const Tipos = styled.div`
 const CardHeader = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-beetween;
-  gap: 100px;
+  justify-content: space-between;
+  width: 95%;
   align-content: center;
 `;
 const About = styled.section`
