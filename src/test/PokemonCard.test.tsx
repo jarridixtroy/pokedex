@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect"; // Importar para tener acceso a los matchers de Jest
 
 import PokemonCard from "../components/PokemonCard";
-import { Pokemon } from "../domain/models/pokemon.model";
-import { PokemonType } from "../domain/models/pokemonType.model";
+import { Pokemon } from "../domain/models/Pokemon";
+import { PokemonType } from "../domain/models/PokemonType";
 
 describe("La PokemonCard", () => {
   it("muestra los detalles del pokemon", () => {
@@ -25,8 +25,10 @@ describe("La PokemonCard", () => {
     expect(screen.getByText("Pikachu")).toBeInTheDocument();
     expect(screen.getByText("#025")).toBeInTheDocument();
     expect(screen.getByAltText("Pikachu")).toBeInTheDocument();
-    expect(screen.getByText("electric")).toBeInTheDocument();
-    expect(screen.getByText("4 m Altura")).toBeInTheDocument();
-    expect(screen.getByText("6 Kg Peso")).toBeInTheDocument();
+    expect(screen.getByText("Electric")).toBeInTheDocument();
+    expect(screen.getByText("4 m")).toBeInTheDocument();
+    expect(screen.getByText("Height")).toBeInTheDocument();
+    expect(screen.getByText("6 Kg")).toBeInTheDocument();
+    expect(screen.getByText("Weight")).toBeInTheDocument();
   });
 });
