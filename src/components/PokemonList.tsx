@@ -16,7 +16,7 @@ const PokemonList: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const listapokemonV2 = await getPokemonListV2(151);
+      const listapokemonV2 = await getPokemonListV2(400);
 
       setPokemonList(listapokemonV2);
 
