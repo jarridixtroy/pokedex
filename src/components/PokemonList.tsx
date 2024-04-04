@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getPokemonDetails } from "../domain/services/getPokemonDetails";
-import { getPokemonList } from "../domain/services/getPokemonList";
+import {
+  getPokemonList,
+  getPokemonListV2,
+} from "../domain/services/getPokemonList";
 import PokemonCard from "./PokemonCard";
 import SearchBar from "./SearchBar";
-import { Pokemon } from "../domain/models/pokemon.model";
-import { transform } from "../domain/services/transformData";
+import { Pokemon } from "../domain/models/Pokemon";
+import { transform } from "../domain/factories/buildPokemon";
 import { act } from "react-dom/test-utils";
 
 const PokemonList: React.FC = () => {
@@ -13,20 +16,11 @@ const PokemonList: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getPokemonList();
-      const detailsPromises = data.map((value: JSON, index: number) =>
-        getPokemonDetails(index + 1)
-      );
+      const listapokemonV2 = await getPokemonListV2(151);
 
-      // Esperar a que todas las llamadas asíncronas se completen
-      const details = await Promise.all(detailsPromises);
+      setPokemonList(listapokemonV2);
 
-      let listapokemon = details.map((item) => transform(item));
-
-      setPokemonList(listapokemon);
-      act(() => {
-        setFilteredPokemonList(listapokemon);
-      });
+      setFilteredPokemonList(listapokemonV2);
     };
 
     fetchData();
@@ -38,9 +32,8 @@ const PokemonList: React.FC = () => {
     filteredList = pokemonList.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(term.toLowerCase())
     );
-    act(() => {
-      setFilteredPokemonList(filteredList);
-    });
+
+    setFilteredPokemonList(filteredList);
   };
 
   return (
