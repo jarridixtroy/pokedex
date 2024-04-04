@@ -1,9 +1,5 @@
 import PokemonDTO from "../dto/pokemonDTO";
 import { Pokemon } from "../models/Pokemon";
-import {
-  getPokemonDescription,
-  getPokemonDescriptionV2,
-} from "./getPokemonDescription";
 import { transform } from "../factories/buildPokemon";
 
 const BASE_URL = "https://pokeapi.co/api/v2";

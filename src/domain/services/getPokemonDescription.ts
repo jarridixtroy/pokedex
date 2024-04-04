@@ -15,7 +15,7 @@ export async function getPokemonDescriptionV2(id: number): Promise<string> {
   const data: PokemonDescriptionDTO = await response.json();
 
   for (let i = 0; i < 100; i++) {
-    if (data.flavor_text_entries[i].language.name == "es") {
+    if (data.flavor_text_entries[i].language.name === "es") {
       return data.flavor_text_entries[i].flavor_text;
     }
   }

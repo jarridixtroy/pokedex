@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getPokemonDetails } from "../domain/services/getPokemonDetails";
-import {
-  getPokemonList,
-  getPokemonListV2,
-} from "../domain/services/getPokemonList";
+
+import { getPokemonListV2 } from "../domain/services/getPokemonList";
 import PokemonCard from "./PokemonCard";
 import SearchBar from "./SearchBar";
 import { Pokemon } from "../domain/models/Pokemon";
-import { transform } from "../domain/factories/buildPokemon";
-import { act } from "react-dom/test-utils";
 
 const PokemonList: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
