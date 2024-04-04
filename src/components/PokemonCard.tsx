@@ -55,7 +55,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
             <SeccionPesoAltura>Height</SeccionPesoAltura>
           </PesoAltura>
         </Size>
-        <p>{description}</p>
+        <Description>{description}</Description>
       </div>
     </div>
   );
@@ -103,7 +103,6 @@ const About = styled.section`
 const Size = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 10px;
 `;
 const PesoAltura = styled.div`
   display: flex;
@@ -119,5 +118,9 @@ const Imagen = styled.img`
   width: 150px;
   height: auto;
   position: relative;
+`;
+const Description = styled.p`
+  margin: 0px;
+  padding: 6px;
 `;
 export default PokemonCard;
