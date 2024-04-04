@@ -1,4 +1,4 @@
-import { PokemonType } from "../domain/models/pokemonType.model";
+import { PokemonType } from "../domain/models/PokemonType";
 
 interface TagsProps {
   tipo: PokemonType;
