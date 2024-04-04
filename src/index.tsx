@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "./componentes/styles/PokemonCard.css";
-import "./componentes/styles/PokemonList.css";
+import "./components/styles/PokemonCard.css";
+import "./components/styles/PokemonList.css";
 
-import "./componentes/styles/Tags.css";
-import "./componentes/styles/about-colors.css";
+import "./components/styles/Tags.css";
+import "./components/styles/about-colors.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

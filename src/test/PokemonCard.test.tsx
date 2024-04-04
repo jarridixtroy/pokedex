@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect"; // Importar para tener acceso a los matchers de Jest
 
-import PokemonCard from "../componentes/PokemonCard";
+import PokemonCard from "../components/PokemonCard";
 import { Pokemon } from "../domain/models/pokemon.model";
 import { PokemonType } from "../domain/models/pokemonType.model";
 
@@ -17,6 +17,7 @@ describe("La PokemonCard", () => {
       weight: 60,
       sprite:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+      description: "",
     };
 
     render(<PokemonCard pokemon={mockPokemon} />);
