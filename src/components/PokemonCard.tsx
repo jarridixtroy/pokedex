@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Pokemon } from "../domain/models/pokemon.model.ts";
+import { Pokemon } from "../domain/models/Pokemon.ts";
 import Tag from "./Tags.tsx";
 import pesoIcono from "../iconos/pesopokemon.png";
 import alturaIcono from "../iconos/altura.png";
@@ -20,7 +20,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
     return "#" + id;
   };
 
-  let propperName = name.charAt(0).toUpperCase() + name.slice(1);
+  const propperName = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
     <div className={`pokemon-card ${typeClass}`}>
@@ -49,17 +49,13 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           <section className="vl"></section>
           <PesoAltura>
             <SeccionPesoAltura>
-              <img
-                src={alturaIcono}
-                width="8px"
-                height="16px"
-                alt={propperName}
-              />
-              {height / 10} m{" "}
+              <img src={alturaIcono} width="8px" height="16px" alt="altura" />
+              {height / 10} m
             </SeccionPesoAltura>
             <SeccionPesoAltura>Height</SeccionPesoAltura>
           </PesoAltura>
         </Size>
+        <p>{description}</p>
       </div>
     </div>
   );
@@ -122,5 +118,6 @@ const SeccionPesoAltura = styled.span`
 const Imagen = styled.img`
   width: 150px;
   height: auto;
+  position: relative;
 `;
 export default PokemonCard;
