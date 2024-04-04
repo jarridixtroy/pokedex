@@ -7,24 +7,14 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const term = event.target.value;
-    act(() => {
-      setSearchTerm(term);
-    });
 
     onSearch(term);
   };
 
   return (
-    <Barra
-      type="text"
-      value={searchTerm}
-      onChange={handleSearch}
-      className="search-bar"
-    ></Barra>
+    <Barra type="text" onChange={handleSearch} className="search-bar"></Barra>
   );
 };
 
