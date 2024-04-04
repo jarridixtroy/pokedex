@@ -1,6 +1,9 @@
 import PokemonDTO from "../dto/pokemonDTO";
 import { Pokemon } from "../models/Pokemon";
-import { getPokemonDescription } from "./getPokemonDescription";
+import {
+  getPokemonDescription,
+  getPokemonDescriptionV2,
+} from "./getPokemonDescription";
 import { transform } from "../factories/buildPokemon";
 
 const BASE_URL = "https://pokeapi.co/api/v2";
@@ -24,7 +27,7 @@ export async function getPokemonDetails(id: number): Promise<PokemonDTO> {
 export async function getPokemonDetailsV2(id: number): Promise<Pokemon> {
   const response = await fetch(`${BASE_URL}/pokemon/${id}`);
   const data = await response.json();
-  const response_description = await getPokemonDescription(id);
+
   const details: PokemonDTO = {
     height: data.height,
     weight: data.weight,
