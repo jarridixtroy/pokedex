@@ -9,3 +9,15 @@ export async function getPokemonDescription(id: number): Promise<string> {
 
   return description;
 }
+
+export async function getPokemonDescriptionV2(id: number): Promise<string> {
+  const response = await fetch(`${BASE_URL}/pokemon-species/${id}`);
+  const data: PokemonDescriptionDTO = await response.json();
+
+  for (let i = 0; i < 100; i++) {
+    if (data.flavor_text_entries[i].language.name == "en") {
+      return data.flavor_text_entries[i].flavor_text;
+    }
+  }
+  return "";
+}
