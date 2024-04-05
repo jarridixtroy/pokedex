@@ -20,7 +20,7 @@ export const PokemonList: React.FC = () => {
   }, []);
 
   const handleSearch = (term: string) => {
-    const filteredList = pokemonList.filter((pokemon) => {
+    let filteredList = pokemonList.filter((pokemon) => {
       pokemon.name.toLowerCase().includes(term.toLowerCase());
     });
     setFilteredPokemonList(filteredList);
