@@ -8,7 +8,7 @@ interface Props {
   pokemon: Pokemon;
 }
 
-const PokemonCard: React.FC<Props> = ({ pokemon }) => {
+export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const { name, id, types, height, weight, sprite, description } = pokemon;
   const typeClass = types[0];
 
@@ -41,10 +41,10 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
         <Size>
           <PesoAltura>
             <SeccionPesoAltura>
-              <img src={pesoIcono} width="18px" height="20px" alt="peso" />
+              <img src={pesoIcono} width="20px" height="20px" alt="peso" />
               {weight / 10} Kg
             </SeccionPesoAltura>
-            <SeccionPesoAltura>Weight</SeccionPesoAltura>
+            <HeightWeight>Weight</HeightWeight>
           </PesoAltura>
           <section className="vl"></section>
           <PesoAltura>
@@ -52,7 +52,7 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
               <img src={alturaIcono} width="8px" height="16px" alt="altura" />
               {height / 10} m
             </SeccionPesoAltura>
-            <SeccionPesoAltura>Height</SeccionPesoAltura>
+            <HeightWeight>Height</HeightWeight>
           </PesoAltura>
         </Size>
         <Description>{description}</Description>
@@ -64,9 +64,11 @@ const PokemonCard: React.FC<Props> = ({ pokemon }) => {
 const Nombre = styled.h2`
   display: flex;
   align-items: flex-start;
-  font-family: "Poppins-bold", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 700;
+  font-style: normal;
   font-size: 24px;
+  line-height: 32px;
   margin: 0px;
   height: auto;
   width: auto;
@@ -76,7 +78,7 @@ const Id = styled.span`
   align-items: center;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 12px;
 `;
 
 const Tipos = styled.div`
@@ -103,24 +105,45 @@ const About = styled.section`
 const Size = styled.div`
   display: flex;
   justify-content: space-evenly;
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
 const PesoAltura = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  width: auto;
 `;
 const SeccionPesoAltura = styled.span`
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 6px;
+  width: auto;
 `;
 const Imagen = styled.img`
   width: 150px;
   height: auto;
   position: relative;
 `;
+const HeightWeight = styled.span`
+  font-family: Poppins;
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 12px;
+  text-align: center;
+  color: #666666;
+`;
 const Description = styled.p`
   margin: 0px;
-  padding: 6px;
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: justify;
+  width: auto;
+  height: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 `;
-export default PokemonCard;

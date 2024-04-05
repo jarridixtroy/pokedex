@@ -1,5 +1,5 @@
 import "./App.css";
-import PokemonList from "./components/PokemonList.tsx";
+import { PokemonList } from "./components/PokemonList.tsx";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         />{" "}
         Pokédex
       </h1>
-      <PokemonList></PokemonList>
+      <PokemonList />
     </div>
   );
 }

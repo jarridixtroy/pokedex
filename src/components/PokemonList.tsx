@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from "react";
-
-import { getPokemonListV2 } from "../domain/services/getPokemonList";
-import PokemonCard from "./PokemonCard";
-import SearchBar from "./SearchBar";
+import { getPokemon } from "../domain/services/getPokemonList";
+import { PokemonCard } from "./PokemonCard";
+import { SearchBar } from "./SearchBar";
 import { Pokemon } from "../domain/models/Pokemon";
 
-const PokemonList: React.FC = () => {
+const CANTIDAD_MAX_POKEMON = 150;
+
+export const PokemonList: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [filteredPokemonList, setFilteredPokemonList] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const listapokemonV2 = await getPokemonListV2(400);
-
-      setPokemonList(listapokemonV2);
-
-      setFilteredPokemonList(listapokemonV2);
+      const listapokemon = await getPokemon(CANTIDAD_MAX_POKEMON);
+      setPokemonList(listapokemon);
+      setFilteredPokemonList(listapokemon);
     };
-
     fetchData();
   }, []);
 
   const handleSearch = (term: string) => {
-    let filteredList: Pokemon[];
-
-    filteredList = pokemonList.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(term.toLowerCase())
-    );
-
+    const filteredList = pokemonList.filter((pokemon) => {
+      pokemon.name.toLowerCase().includes(term.toLowerCase());
+    });
     setFilteredPokemonList(filteredList);
   };
 
@@ -43,5 +38,3 @@ const PokemonList: React.FC = () => {
     </div>
   );
 };
-
-export default PokemonList;

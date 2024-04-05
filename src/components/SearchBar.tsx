@@ -1,15 +1,13 @@
 import React, { ChangeEvent, useState } from "react";
-import { act } from "react-dom/test-utils";
 import styled from "styled-components";
 import busquedaIcono from "../iconos/busquedaIcono.png";
-interface SearchBarProps {
+interface SearchBarProp {
   onSearch: (term: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+export const SearchBar: React.FC<SearchBarProp> = ({ onSearch }) => {
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const term = event.target.value;
-
     onSearch(term);
   };
 
@@ -17,8 +15,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     <Barra type="text" onChange={handleSearch} className="search-bar"></Barra>
   );
 };
-
-export default SearchBar;
 
 const Barra = styled.input`
   width: 40%;

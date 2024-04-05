@@ -20,8 +20,8 @@ export async function getPokemonDetails(id: number): Promise<PokemonDTO> {
   return details;
 }
 
-export async function getPokemonDetailsV2(id: number): Promise<Pokemon> {
-  const response = await fetch(`${BASE_URL}/pokemon/${id}`);
+export async function getPokemonDetailsV2(url: string): Promise<Pokemon> {
+  const response = await fetch(url);
   const data = await response.json();
 
   const details: PokemonDTO = {
