@@ -1,6 +1,6 @@
 import { Pokemon } from "../models/Pokemon";
 import { Direcciones } from "../dto/pokemonEndpointDTO.ts";
-import { getPokemonDetails, getPokemonDetailsV2 } from "./getPokemonDetails";
+import { getPokeDetails } from "./getPokemonDetails";
 
 const BASE_URL = "https://pokeapi.co/api/v2";
 
@@ -17,7 +17,7 @@ export async function getPokemon(cuantos: number): Promise<Pokemon[]> {
   ).json();
 
   const pokemonPromises = urls.results.map<Promise<Pokemon>>(async (value) => {
-    return getPokemonDetailsV2(value.url);
+    return getPokeDetails(value.url);
   });
   const pokemon_list: Pokemon[] = await Promise.all(pokemonPromises);
   //for (let i = 0; i < cuantos; i++) {

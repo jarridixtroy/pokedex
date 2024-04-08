@@ -10,7 +10,7 @@ export async function getPokemonDescription(id: number): Promise<string> {
   return description;
 }
 
-export async function getPokemonDescriptionV2(id: number): Promise<string> {
+export async function getPokemonDescriptionEsp(id: number): Promise<string> {
   const response = await fetch(`${BASE_URL}/pokemon-species/${id}`);
   const data: PokemonDescriptionDTO = await response.json();
 
