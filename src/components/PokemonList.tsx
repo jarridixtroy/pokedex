@@ -4,36 +4,41 @@ import { PokemonCard } from "./PokemonCard";
 import { SearchBar } from "./SearchBar";
 import { Pokemon } from "../domain/models/Pokemon";
 
-const CANTIDAD_MAX_POKEMON = 150;
+const CANTIDAD_MAX_POKEMON = 493;
 
 export const PokemonList: React.FC = () => {
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
-  const [filteredPokemonList, setFilteredPokemonList] = useState<Pokemon[]>([]);
+  const [pokemonList, setPokemonList] = useState<Pokemon[] | undefined>(
+    undefined
+  );
+  const [term, setTerm] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
       const listapokemon = await getPokemon(CANTIDAD_MAX_POKEMON);
       setPokemonList(listapokemon);
-      setFilteredPokemonList(listapokemon);
     };
     fetchData();
   }, []);
 
   const handleSearch = (term: string) => {
-    let filteredList;
-    filteredList = pokemonList.filter((pokemon) => {
-      return pokemon.name.toLowerCase().includes(term.toLowerCase());
-    });
-    setFilteredPokemonList(filteredList);
+    setTerm(term);
   };
+
+  if (pokemonList === undefined) {
+    return <div>Cargando...</div>;
+  }
+
+  const filteredPokemonList = pokemonList.filter((pokemon) => {
+    return pokemon.name.toLocaleLowerCase().includes(term.toLowerCase());
+  });
 
   return (
     <div>
       <hr />
-      <SearchBar className="search-bar" onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} />
       <div className="pokemon-list-container">
-        {filteredPokemonList.map((pokemon, index) => (
-          <PokemonCard key={index} pokemon={pokemon} />
+        {filteredPokemonList.map((pokemon) => (
+          <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </div>
     </div>

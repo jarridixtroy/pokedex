@@ -10,14 +10,17 @@ export async function getPokemonDescription(id: number): Promise<string> {
   return description;
 }
 
-export async function getPokemonDescriptionEsp(id: number): Promise<string> {
+export async function getSpanishDescription(id: number): Promise<string> {
   const response = await fetch(`${BASE_URL}/pokemon-species/${id}`);
   const data: PokemonDescriptionDTO = await response.json();
 
-  for (let i = 0; i < 100; i++) {
-    if (data.flavor_text_entries[i].language.name === "es") {
-      return data.flavor_text_entries[i].flavor_text;
+  const flavor_text_entrie = data.flavor_text_entries.find(
+    (flavor_text_entri) => {
+      return flavor_text_entri.language.name === "es";
     }
+  );
+  if (flavor_text_entrie === undefined) {
+    return "indefinido";
   }
-  return "";
+  return flavor_text_entrie.flavor_text;
 }

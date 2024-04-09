@@ -10,26 +10,19 @@ interface Props {
 
 export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const { name, id, types, height, weight, sprite, description } = pokemon;
-  const typeClass = types[0];
+  const [typeClass] = types;
 
-  const get3DigitsName = () => {
-    if (id < 10) return "#00" + id;
-
-    if (id < 100) return "#0" + id;
-
-    return "#" + id;
-  };
-
-  const propperName = name.charAt(0).toUpperCase() + name.slice(1);
+  const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
+  const formattedId = `#${id.toString().padStart(3, "0")}`;
 
   return (
     <div className={`pokemon-card ${typeClass}`}>
       <CardHeader>
-        <Nombre>{propperName}</Nombre>
-        <Id>{get3DigitsName()}</Id>
+        <Nombre>{formattedName}</Nombre>
+        <Id>{formattedId}</Id>
       </CardHeader>
 
-      <Imagen src={sprite} alt={propperName} />
+      <Imagen src={sprite} alt={formattedName} />
 
       <div className="card__details">
         <Tipos>

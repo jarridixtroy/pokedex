@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import busquedaIcono from "../iconos/busquedaIcono.png";
 interface SearchBarProp {
@@ -11,9 +11,7 @@ export const SearchBar: React.FC<SearchBarProp> = ({ onSearch }) => {
     onSearch(term);
   };
 
-  return (
-    <Barra type="text" onChange={handleSearch} className="search-bar"></Barra>
-  );
+  return <Barra type="text" onChange={handleSearch}></Barra>;
 };
 
 const Barra = styled.input`

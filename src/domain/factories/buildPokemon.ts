@@ -2,9 +2,11 @@ import PokemonDTO from "../dto/pokemonDTO";
 import { PokemonTypeDTO } from "../dto/pokemonTypesDTO";
 import { Pokemon } from "../models/Pokemon";
 import { PokemonType } from "../models/PokemonType";
-import { getPokemonDescriptionV2 } from "../services/getPokemonDescription";
 
-export async function transform(pokemon: PokemonDTO): Promise<Pokemon> {
+export function transform(
+  pokemon: PokemonDTO,
+  descriptionEsp: string
+): Pokemon {
   const poke: Pokemon = {
     height: pokemon.height,
     id: pokemon.id,
@@ -12,7 +14,7 @@ export async function transform(pokemon: PokemonDTO): Promise<Pokemon> {
     sprite: pokemon.sprites.other["official-artwork"].front_default,
     types: transformType(pokemon.types),
     weight: pokemon.weight,
-    description: await getPokemonDescriptionV2(pokemon.id),
+    description: descriptionEsp,
   };
   return poke;
 }
