@@ -1,4 +1,4 @@
-export interface Direcciones {
+export interface DireccionesDTO {
   count: number;
   next: null;
   previous: null;
