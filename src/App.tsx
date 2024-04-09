@@ -4,15 +4,15 @@ import { PokemonList } from "./components/PokemonList.tsx";
 function App() {
   return (
     <div className="App">
-      <h1>
+      <header className="App-header">
         <img
           src="./iconos/iconoPokeball.png"
-          width="20px"
-          height="20px"
+          width="40px"
+          height="40px"
           alt=""
-        />{" "}
-        Pokédex
-      </h1>
+        />
+        <h2 className="App-header">Pokédex</h2>
+      </header>
       <PokemonList />
     </div>
   );
