@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect"; // Importar para tener acceso a los matchers de Jest
 
-import PokemonCard from "../components/PokemonCard";
+import { PokemonCard } from "../components/PokemonCard";
 import { Pokemon } from "../domain/models/Pokemon";
 import { PokemonType } from "../domain/models/PokemonType";
 
