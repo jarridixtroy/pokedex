@@ -4,7 +4,7 @@ import { PokemonCard } from "./PokemonCard";
 import { SearchBar } from "./SearchBar";
 import { Pokemon } from "../domain/models/Pokemon";
 
-const CANTIDAD_MAX_POKEMON = 493;
+const CANTIDAD_MAX_POKEMON = 151;
 
 export const PokemonList: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[] | undefined>(
@@ -21,6 +21,7 @@ export const PokemonList: React.FC = () => {
   }, []);
 
   const handleSearch = (term: string) => {
+    console.log("filtrado");
     setTerm(term);
   };
 
