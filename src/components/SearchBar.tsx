@@ -11,7 +11,7 @@ export const SearchBar: React.FC<SearchBarProp> = ({ onSearch }) => {
     onSearch(term);
   };
 
-  return <Barra type="text" onChange={handleSearch}></Barra>;
+  return <Barra type="text" onChange={handleSearch} alt="searchbar"></Barra>;
 };
 
 const Barra = styled.input`
