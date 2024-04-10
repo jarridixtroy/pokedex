@@ -1,39 +1,95 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { Pokemon } from "../domain/models/Pokemon";
 import { PokemonCard } from "../components/PokemonCard";
-import { getPokemonList } from "../domain/services/getPokemonList";
-import { getPokemonDetails } from "../domain/services/getPokemonDetails";
-import { transform } from "../domain/factories/buildPokemon";
-import PokemonDTO from "../domain/dto/pokemonDTO";
+import * as getPokemonList from "../domain/services/getPokemonList";
+import { PokemonList } from "../components/PokemonList";
+import userEvent from "@testing-library/user-event";
 
-// Mockeo de las funciones para conseguir la lista de pokemon y los detalles de cada uno
-jest.mock("../domain/services/getPokemonList", () => ({
-  getPokemon: jest.fn().mockResolvedValue([
-    { name: "Pikachu", url: "https://pokeapi.co/api/v2/pokemon/25/" },
-    { name: "Bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
-  ]),
-}));
-jest.mock("../domain/services/getPokemonDetails", () => ({
-  getPokeDetails: jest.fn(),
-}));
 describe("PokemonList", () => {
   it("muestra la lista de Pokemon", async () => {
-    const pokemones = await getPokemonList();
-    const detailsPromises = pokemones.map(
-      async (_value: JSON, index: number) => {
-        const pokemonDTO = await getPokemonDetails(index + 1);
-        return transform(pokemonDTO);
-      }
-    );
-    const listapokemon: Pokemon[] = await Promise.all(detailsPromises);
+    jest.spyOn(getPokemonList, "getPokemon").mockResolvedValue([
+      {
+        name: "pikachu",
+        id: 25,
+        types: ["electric"],
+        height: 40,
+        weight: 60,
+        sprite:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+        description: "",
+      },
+      {
+        name: "bulbasaur",
+        id: 1,
+        types: ["grass", "poison"],
+        height: 30,
+        weight: 70,
+        sprite:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+        description: "",
+      },
+    ]);
 
-    listapokemon.map((pokemon, index) =>
-      render(<PokemonCard key={index} pokemon={pokemon} />)
-    );
+    render(<PokemonList />);
 
     expect(await screen.findByText("Pikachu")).toBeInTheDocument();
+    expect(screen.getByText("Pikachu")).toBeInTheDocument();
+    expect(screen.getByText("#025")).toBeInTheDocument();
+    expect(screen.getByAltText("Pikachu")).toBeInTheDocument();
+    expect(screen.getByText("Electric")).toBeInTheDocument();
+    expect(screen.getByText("4 m")).toBeInTheDocument();
+    expect(screen.getByText("Height")).toBeInTheDocument();
+    expect(screen.getByText("6 Kg")).toBeInTheDocument();
+    expect(screen.getByText("Weight")).toBeInTheDocument();
     expect(screen.getByText("Bulbasaur")).toBeInTheDocument();
+    expect(screen.getByText("#001")).toBeInTheDocument();
+    expect(screen.getByAltText("Bulbasaur")).toBeInTheDocument();
+    expect(screen.getByText("Grass")).toBeInTheDocument();
+    expect(screen.getByText("Poison")).toBeInTheDocument();
+    expect(screen.getByText("3 m")).toBeInTheDocument();
+    expect(screen.getByText("Height")).toBeInTheDocument();
+    expect(screen.getByText("7 Kg")).toBeInTheDocument();
+    expect(screen.getByText("Weight")).toBeInTheDocument();
+  });
+  it("filtra la lista de pokemon", async () => {
+    jest.spyOn(getPokemonList, "getPokemon").mockResolvedValue([
+      {
+        name: "pikachu",
+        id: 25,
+        types: ["electric"],
+        height: 40,
+        weight: 60,
+        sprite:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+        description: "",
+      },
+      {
+        name: "bulbasaur",
+        id: 1,
+        types: ["grass", "poison"],
+        height: 3,
+        weight: 7,
+        sprite:
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+        description: "",
+      },
+    ]);
+
+    render(<PokemonList />);
+
+    const input = await screen.findByAltText("searchbar");
+    userEvent.type(input, "Pika");
+
+    expect(await screen.findByText("Pikachu")).toBeInTheDocument();
+    expect(screen.getByText("Pikachu")).toBeInTheDocument();
+    expect(screen.getByText("#025")).toBeInTheDocument();
+    expect(screen.getByAltText("Pikachu")).toBeInTheDocument();
+    expect(screen.getByText("Electric")).toBeInTheDocument();
+    expect(screen.getByText("4 m")).toBeInTheDocument();
+    expect(screen.getByText("Height")).toBeInTheDocument();
+    expect(screen.getByText("6 Kg")).toBeInTheDocument();
+    expect(screen.getByText("Weight")).toBeInTheDocument();
+    expect(screen.queryByText("Bulbasaur")).not.toBeInTheDocument();
   });
 });
