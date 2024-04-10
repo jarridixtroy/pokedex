@@ -1,5 +1,6 @@
 export type PokemonType =
   | "fire"
+  | "poison"
   | "water"
   | "grass"
   | "flying"
