@@ -8,9 +8,7 @@ describe("Cuando el usuario escribe un input en la barra de busqueda", () => {
     const mockOnSearch = jest.fn();
 
     render(<SearchBar onSearch={mockOnSearch} />);
-
-    const input = screen.getByPlaceholderText("Buscar Pokémon por nombre");
-
+    const input = screen.getByAltText("searchbar");
     userEvent.type(input, "Pikachu");
 
     expect(mockOnSearch).toHaveBeenCalledWith("Pikachu");
