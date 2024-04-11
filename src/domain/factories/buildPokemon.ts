@@ -8,12 +8,12 @@ export function transform(
   descriptionEsp: string
 ): Pokemon {
   const poke: Pokemon = {
-    height: pokemon.height,
+    height: pokemon.height / 10,
     id: pokemon.id,
     name: pokemon.name,
     sprite: pokemon.sprites.other["official-artwork"].front_default,
     types: transformType(pokemon.types),
-    weight: pokemon.weight,
+    weight: pokemon.weight / 10,
     description: descriptionEsp,
   };
   return poke;

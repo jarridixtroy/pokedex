@@ -9,6 +9,49 @@ interface Props {
   pokemon: Pokemon;
 }
 
+const getColorTheme = (typeClass: PokemonType) => {
+  switch (typeClass) {
+    case "fire":
+      return "#ffa200";
+    case "water":
+      return "#2196f3";
+    case "grass":
+      return "#74cb48";
+    case "flying":
+      return "#a891ec";
+    case "electric":
+      return "#ffde0a";
+    case "ice":
+      return "#9ad6df";
+    case "psychic":
+      return "#fb5584";
+    case "fighting":
+      return "#c12239";
+    case "ground":
+      return "#dec16b";
+    case "rock":
+      return "#b69e31";
+    case "fairy":
+      return "#e69eac";
+    case "dragon":
+      return "#7037ff";
+    case "steel":
+      return "#b7b9d0";
+    case "bug":
+      return "#a7b723";
+    case "dark":
+      return "#75574c";
+    case "normal":
+      return "#aaa67f";
+    case "poison":
+      return "#a43e9e";
+    case "ghost":
+      return "#70559b";
+    default:
+      return "gray";
+  }
+};
+
 export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const { name, id, types, height, weight, sprite, description } = pokemon;
   const [typeClass] = types;
@@ -16,100 +59,35 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
   const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
   const formattedId = `#${id.toString().padStart(3, "0")}`;
 
-  const getColorTheme = () => {
-    switch (typeClass) {
-      case "fire":
-        return "#ffa200";
-      case "water":
-        return "#2196f3";
-      case "grass":
-        return "#74cb48";
-      case "flying":
-        return "#a891ec";
-      case "electric":
-        return "#ffde0a";
-      case "ice":
-        return "#9ad6df";
-      case "psychic":
-        return "#fb5584";
-      case "fighting":
-        return "#c12239";
-      case "ground":
-        return "#dec16b";
-      case "rock":
-        return "#b69e31";
-      case "fairy":
-        return "#e69eac";
-      case "dragon":
-        return "#7037ff";
-      case "steel":
-        return "#b7b9d0";
-      case "bug":
-        return "#a7b723";
-      case "dark":
-        return "#75574c";
-      case "normal":
-        return "#aaa67f";
-      case "poison":
-        return "#a43e9e";
-      case "ghost":
-        return "#70559b";
-      default:
-        return "gray";
-    }
-  };
-
-  const Card = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 12px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 320px;
-    padding: 6px;
-    padding-top: 10px;
-    margin-bottom: 30px;
-    color: white;
-    background-color: ${getColorTheme()};
-  `;
-
-  const About = styled.section`
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    color: ${getColorTheme()};
-  `;
+  const color = getColorTheme(typeClass);
 
   return (
-    <Card>
+    <Card $backgroundColor={color}>
       <CardHeader>
         <Nombre>{formattedName}</Nombre>
         <Id>{formattedId}</Id>
       </CardHeader>
-
       <Imagen src={sprite} alt={formattedName} />
-
       <CardDetails>
         <Tipos>
           {types.map((tipo, index) => (
             <Tag key={index} tipo={tipo}></Tag>
           ))}
         </Tipos>
-        <About className={`about-${typeClass}`}>About</About>
+        <About $color={color}>About</About>
         <Size>
           <PesoAltura>
             <SeccionPesoAltura>
               <img src={pesoIcono} width="20px" height="20px" alt="peso" />
-              {weight / 10} Kg
+              {weight} Kg
             </SeccionPesoAltura>
             <HeightWeight>Weight</HeightWeight>
           </PesoAltura>
-          <section className="vl"></section>
+          <VerticalLine />
           <PesoAltura>
             <SeccionPesoAltura>
               <img src={alturaIcono} width="8px" height="16px" alt="altura" />
-              {height / 10} m
+              {height} m
             </SeccionPesoAltura>
             <HeightWeight>Height</HeightWeight>
           </PesoAltura>
@@ -119,7 +97,11 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
     </Card>
   );
 };
-
+const About = styled.section<{ $color?: string }>`
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: ${(props) => props.$color};
+`;
 const Nombre = styled.h2`
   display: flex;
   align-items: flex-start;
@@ -138,6 +120,21 @@ const Id = styled.span`
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 12px;
+`;
+const Card = styled.div<{ $backgroundColor?: string }>`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  width: 320px;
+  padding: 6px;
+  padding-top: 10px;
+  margin-bottom: 30px;
+  color: white;
+  background-color: ${(props) => props.$backgroundColor};
 `;
 
 const Tipos = styled.div`
@@ -182,6 +179,7 @@ const Imagen = styled.img`
   width: 150px;
   height: auto;
   position: relative;
+  z-index: 1;
 `;
 const HeightWeight = styled.span`
   font-family: Poppins;
@@ -215,4 +213,10 @@ const CardDetails = styled.div`
   height: 250px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
+  padding-top: 20px;
+`;
+
+const VerticalLine = styled.section`
+  border-left: 2px solid #e0e0e0;
+  height: 52px;
 `;
