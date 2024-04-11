@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPokemon } from "../domain/services/getPokemonList";
+import { getPokemons } from "../domain/services/getPokemons";
 import { PokemonCard } from "./PokemonCard";
 import { SearchBar } from "./SearchBar";
 import { Pokemon } from "../domain/models/Pokemon";
@@ -14,7 +14,7 @@ export const PokemonList: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const listapokemon = await getPokemon(CANTIDAD_MAX_POKEMON);
+      const listapokemon = await getPokemons(CANTIDAD_MAX_POKEMON);
       setPokemonList(listapokemon);
     };
     fetchData();
